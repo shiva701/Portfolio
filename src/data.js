@@ -10,9 +10,9 @@ export const profile = {
   email: 'shiva27295@gmail.com',
   linkedin: 'https://linkedin.com/in/shivashuklagmu',
   github: 'https://github.com/shiva701',
-  resume: '/Shiva_Shukla_Resume.pdf',
-  heroPhoto: '/hero.jpg',
-  headshot: '/headshot.jpg',
+  resume: `${import.meta.env.BASE_URL}Shiva_Shukla_Resume.pdf`,
+  heroPhoto: `${import.meta.env.BASE_URL}hero.jpg`,
+  headshot: `${import.meta.env.BASE_URL}headshot.jpg`,
 };
 
 export const navLinks = [

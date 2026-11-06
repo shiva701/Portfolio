@@ -16,3 +16,13 @@ All text (about, experience, skills, education, contact) lives in `src/data.js`.
 Images and the downloadable resume are in `public/`:
 - `public/hero.jpg`, `public/headshot.jpg` — cropped from IMG_5833-EDIT.jpg
 - `public/Shiva_Shukla_Resume.pdf` — linked by every "Download Resume" button
+
+## Tests
+End-to-end tests use Playwright (desktop Chrome + Pixel 7 mobile). The dev server starts automatically.
+
+```bash
+npx playwright install chromium   # first time only
+npm test                          # run all tests
+npm run test:ui                   # interactive runner
+npm run test:report               # open the last HTML report
+```

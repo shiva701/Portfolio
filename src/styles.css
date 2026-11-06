@@ -205,7 +205,12 @@ ul { list-style: none; }
 .exp__tags { display: flex; gap: 6px; justify-content: flex-end; }
 .exp__detail { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s ease; }
 .exp__row.is-open .exp__detail { grid-template-rows: 1fr; }
-.exp__detail-inner { overflow: hidden; display: flex; gap: 32px; align-items: center; justify-content: space-between; }
+.exp__detail-inner {
+  overflow: hidden; display: flex; gap: 32px; align-items: center; justify-content: space-between;
+  /* hide collapsed content from screen readers / tab order once the collapse animation ends */
+  visibility: hidden; transition: visibility 0s linear .45s;
+}
+.exp__row.is-open .exp__detail-inner { visibility: visible; transition-delay: 0s; }
 .exp__highlights { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 32px; padding-bottom: 28px; }
 .exp__highlights li { font-size: 13px; color: var(--ink-2); padding-left: 14px; position: relative; }
 .exp__highlights li::before { content: ''; position: absolute; left: 0; top: .6em; width: 5px; height: 5px; border-radius: 50%; background: var(--ink); }
