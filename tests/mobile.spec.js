@@ -5,7 +5,7 @@ test.describe('Mobile layout', () => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
     const overflow = await page.evaluate(
-      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
     );
     expect(overflow).toBeLessThanOrEqual(0);
   });
@@ -15,7 +15,9 @@ test.describe('Mobile layout', () => {
     const menu = page.getByRole('button', { name: 'Toggle menu' });
     await expect(menu).toBeVisible();
     await expect(menu).toHaveAttribute('aria-expanded', 'false');
-    await expect(page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'About Me' })).not.toBeInViewport();
+    await expect(
+      page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'About Me' }),
+    ).not.toBeInViewport();
   });
 
   test('menu opens, navigates and closes', async ({ page }) => {
@@ -38,7 +40,10 @@ test.describe('Mobile layout', () => {
     await page.getByRole('button', { name: 'Toggle menu' }).click();
     const [download] = await Promise.all([
       page.waitForEvent('download'),
-      page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'Download Resume' }).click(),
+      page
+        .getByRole('navigation', { name: 'Primary' })
+        .getByRole('link', { name: 'Download Resume' })
+        .click(),
     ]);
     expect(download.suggestedFilename()).toBe('Shiva_Shukla_Resume.pdf');
   });

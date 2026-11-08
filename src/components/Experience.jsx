@@ -18,22 +18,30 @@ const duration = (start, end) => {
   const total = end - start + 1; // inclusive of both months
   const y = Math.floor(total / 12);
   const m = total % 12;
-  return [y && `${y} yr${y > 1 ? 's' : ''}`, m && `${m} mo${m > 1 ? 's' : ''}`].filter(Boolean).join(' ');
+  return [y && `${y} yr${y > 1 ? 's' : ''}`, m && `${m} mo${m > 1 ? 's' : ''}`]
+    .filter(Boolean)
+    .join(' ');
 };
 
 // Group consecutive roles at the same company, keeping each role's index in
 // the flat list so the accordion state stays a single number.
-const companies = experience.reduce((acc, role, index) => {
-  const last = acc[acc.length - 1];
-  const entry = { ...role, index, ...parsePeriod(role.period) };
-  if (last && last.name === role.company) last.roles.push(entry);
-  else acc.push({ name: role.company, roles: [entry] });
-  return acc;
-}, []).map((c) => {
-  const start = Math.min(...c.roles.map((r) => r.start));
-  const end = Math.max(...c.roles.map((r) => r.end));
-  return { ...c, period: `${fromMonth(start)} - ${fromMonth(end)}`, tenure: duration(start, end) };
-});
+const companies = experience
+  .reduce((acc, role, index) => {
+    const last = acc[acc.length - 1];
+    const entry = { ...role, index, ...parsePeriod(role.period) };
+    if (last && last.name === role.company) last.roles.push(entry);
+    else acc.push({ name: role.company, roles: [entry] });
+    return acc;
+  }, [])
+  .map((c) => {
+    const start = Math.min(...c.roles.map((r) => r.start));
+    const end = Math.max(...c.roles.map((r) => r.end));
+    return {
+      ...c,
+      period: `${fromMonth(start)} - ${fromMonth(end)}`,
+      tenure: duration(start, end),
+    };
+  });
 
 export default function Experience() {
   const [active, setActive] = useState(0);
@@ -43,7 +51,11 @@ export default function Experience() {
       <div className="exp__head">
         <div>
           <span className="eyebrow">Experience</span>
-          <h2 className="h2">Explore My<br />Engineering Journey</h2>
+          <h2 className="h2">
+            Explore My
+            <br />
+            Engineering Journey
+          </h2>
         </div>
         <div>
           <p className="tiny muted">
@@ -90,14 +102,18 @@ export default function Experience() {
                       <p className="tiny muted exp__blurb">{r.summary}</p>
                       <div className="exp__tags">
                         {r.tags.map((t) => (
-                          <span key={t} className={`chip ${open ? 'chip--dark' : ''}`}>{t}</span>
+                          <span key={t} className={`chip ${open ? 'chip--dark' : ''}`}>
+                            {t}
+                          </span>
                         ))}
                       </div>
                     </button>
                     <div className="exp__detail">
                       <div className="exp__detail-inner">
                         <ul className="exp__highlights">
-                          {r.highlights.map((h) => <li key={h}>{h}</li>)}
+                          {r.highlights.map((h) => (
+                            <li key={h}>{h}</li>
+                          ))}
                         </ul>
                       </div>
                     </div>

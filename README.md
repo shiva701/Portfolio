@@ -3,6 +3,7 @@
 React + Vite portfolio site.
 
 ## Run locally
+
 Requires Node.js 20.19+ or 22.12+ (https://nodejs.org).
 
 ```bash
@@ -12,6 +13,7 @@ npm run build      # production build in dist/
 ```
 
 ## Linting & formatting
+
 ESLint (with React, React Hooks and React Refresh rules) checks code quality. Prettier handles formatting. `eslint-config-prettier` stops the two from conflicting. Config files: `eslint.config.js` and `.prettierrc.json`.
 
 ```bash
@@ -22,6 +24,7 @@ npm run format:check   # check formatting without writing (useful in CI)
 ```
 
 ## Tests
+
 End-to-end tests use Playwright (desktop Chrome + Pixel 7 mobile). The dev server starts automatically.
 
 ```bash

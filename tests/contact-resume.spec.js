@@ -12,8 +12,14 @@ test.describe('Contact section', () => {
     await expect(contact).toContainText(PHONE);
     await expect(contact).toContainText('King of Prussia, PA');
 
-    await expect(contact.getByRole('link', { name: new RegExp(EMAIL) })).toHaveAttribute('href', `mailto:${EMAIL}`);
-    await expect(contact.getByRole('link', { name: /703/ })).toHaveAttribute('href', 'tel:+17033649625');
+    await expect(contact.getByRole('link', { name: new RegExp(EMAIL) })).toHaveAttribute(
+      'href',
+      `mailto:${EMAIL}`,
+    );
+    await expect(contact.getByRole('link', { name: /703/ })).toHaveAttribute(
+      'href',
+      'tel:+17033649625',
+    );
 
     const linkedin = contact.getByRole('link', { name: /LinkedIn/ });
     await expect(linkedin).toHaveAttribute('href', 'https://linkedin.com/in/shivashuklagmu');
@@ -27,14 +33,23 @@ test.describe('Contact section', () => {
 
   test('"Say Hello" opens an email', async ({ page }) => {
     await page.goto('/');
-    await expect(page.getByRole('link', { name: 'Say Hello' })).toHaveAttribute('href', `mailto:${EMAIL}`);
+    await expect(page.getByRole('link', { name: 'Say Hello' })).toHaveAttribute(
+      'href',
+      `mailto:${EMAIL}`,
+    );
   });
 
   test('footer shows clickable email and phone', async ({ page }) => {
     await page.goto('/');
     const footer = page.locator('footer');
-    await expect(footer.getByRole('link', { name: EMAIL })).toHaveAttribute('href', `mailto:${EMAIL}`);
-    await expect(footer.getByRole('link', { name: PHONE })).toHaveAttribute('href', 'tel:+17033649625');
+    await expect(footer.getByRole('link', { name: EMAIL })).toHaveAttribute(
+      'href',
+      `mailto:${EMAIL}`,
+    );
+    await expect(footer.getByRole('link', { name: PHONE })).toHaveAttribute(
+      'href',
+      'tel:+17033649625',
+    );
   });
 
   test('banner "Let\'s talk" jumps to contact', async ({ page }) => {
@@ -65,9 +80,16 @@ test.describe('Resume download', () => {
 
   const triggers = [
     ['header', (page) => page.locator('header').getByRole('link', { name: 'Download Resume' })],
-    ['experience section', (page) => page.locator('#experience .exp__head').getByRole('link', { name: 'Download Resume' })],
+    [
+      'experience section',
+      (page) =>
+        page.locator('#experience .exp__head').getByRole('link', { name: 'Download Resume' }),
+    ],
     ['banner', (page) => page.locator('.banner').getByRole('link', { name: 'Download Resume' })],
-    ['contact section', (page) => page.locator('#contact').getByRole('link', { name: 'Download Resume' })],
+    [
+      'contact section',
+      (page) => page.locator('#contact').getByRole('link', { name: 'Download Resume' }),
+    ],
   ];
 
   for (const [where, locate] of triggers) {

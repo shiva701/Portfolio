@@ -35,16 +35,14 @@ test.describe('Hero', () => {
     await page.goto('/');
     const img = page.getByRole('img', { name: 'Portrait of Shiva Shukla' });
     await expect(img).toBeVisible();
-    await expect
-      .poll(() => img.evaluate((el) => el.complete && el.naturalWidth > 0))
-      .toBe(true);
+    await expect.poll(() => img.evaluate((el) => el.complete && el.naturalWidth > 0)).toBe(true);
   });
 
   test('all images on the page load successfully', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
     const broken = await page.$$eval('img', (imgs) =>
-      imgs.filter((i) => !(i.complete && i.naturalWidth > 0)).map((i) => i.src)
+      imgs.filter((i) => !(i.complete && i.naturalWidth > 0)).map((i) => i.src),
     );
     expect(broken).toEqual([]);
   });
@@ -69,7 +67,10 @@ test.describe('Navigation', () => {
   for (const [label, id] of links) {
     test(`header link "${label}" scrolls to #${id}`, async ({ page }) => {
       await page.goto('/');
-      await page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: label }).click();
+      await page
+        .getByRole('navigation', { name: 'Primary' })
+        .getByRole('link', { name: label })
+        .click();
       await expect(page).toHaveURL(new RegExp(`#${id}$`));
       await expect(page.locator(`#${id}`)).toBeInViewport();
     });
@@ -123,9 +124,7 @@ test.describe('Featured work', () => {
     const desc = card.locator('.work__desc');
     const before = await desc.boundingBox();
     await card.hover();
-    await expect
-      .poll(async () => (await desc.boundingBox()).y)
-      .toBeLessThan(before.y);
+    await expect.poll(async () => (await desc.boundingBox()).y).toBeLessThan(before.y);
   });
 });
 
@@ -229,7 +228,10 @@ test.describe('Skills & education', () => {
   for (const name of ['General Quiz, 3rd Place', 'Table Tennis Boys Doubles, 1st Prize']) {
     test(`opens the HBTI "${name}" certificate in a viewer`, async ({ page }) => {
       await page.goto('/');
-      await page.locator('#education').getByRole('button', { name: new RegExp(name) }).click();
+      await page
+        .locator('#education')
+        .getByRole('button', { name: new RegExp(name) })
+        .click();
       const dialog = page.getByRole('dialog', { name });
       await expect(dialog.getByRole('img', { name: /certificate/ })).toBeVisible();
       await expect(dialog.locator('img, a[download]')).toHaveCount(0);

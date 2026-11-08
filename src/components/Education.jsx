@@ -12,7 +12,9 @@ function AwardViewer({ award, dialogRef, onClose }) {
       className="award-viewer"
       aria-label={award ? award.title : 'Award'}
       onClose={onClose}
-      onClick={(e) => { if (e.target === e.currentTarget) e.currentTarget.close(); }}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) e.currentTarget.close();
+      }}
       onContextMenu={block}
     >
       {award && (
@@ -63,14 +65,18 @@ export default function Education() {
       <div className="edu__grid">
         {education.map((e) => (
           <article key={e.school} className="edu-card">
-            <div className="edu-card__media"><Art variant={e.art} /></div>
+            <div className="edu-card__media">
+              <Art variant={e.art} />
+            </div>
             <div className="edu-card__body">
               <div className="edu-card__meta">
                 <span className="chip chip--dark chip--xs">{e.detail}</span>
                 <span className="tiny muted">{e.period}</span>
               </div>
               <h3>{e.school}</h3>
-              <p className="tiny muted">{e.degree} · {e.place}</p>
+              <p className="tiny muted">
+                {e.degree} · {e.place}
+              </p>
               {(e.roles?.length > 0 || e.awards?.length > 0) && (
                 <ul className="edu-card__awards">
                   {e.roles?.map((r) => (

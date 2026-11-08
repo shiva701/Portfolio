@@ -35,7 +35,11 @@ export const about = {
     'I specialize in Java, Python, Spring, microservices, REST APIs, OAuth2/JWT security, TypeScript, Lit, React, SQL/NoSQL databases, unit/integration testing, Redis caching and OpenTelemetry observability, the pieces that keep production systems fast and reliable.',
     'I ship through CI/CD with GitHub Actions, GitLab, Jenkins, Helm, Terraform and Azure Kubernetes, working closely with Agile teams from design to deployment.',
   ],
-  stat: { value: '22%', label: 'Higher F1 score on a LangChain + OpenAI app that analyzes and rewrites requirements per INCOSE standards, with 25% lower token costs' },
+  stat: {
+    value: '22%',
+    label:
+      'Higher F1 score on a LangChain + OpenAI app that analyzes and rewrites requirements per INCOSE standards, with 25% lower token costs',
+  },
 };
 
 export const featuredWork = [
@@ -70,7 +74,8 @@ export const experience = [
     company: 'PTC Inc.',
     title: 'Software Engineer Specialist',
     period: 'Feb 2026 - Oct 2026',
-    summary: 'Full-stack with Python, Java, TypeScript, Lit, Azure and SQL. Building AI agent infrastructure.',
+    summary:
+      'Full-stack with Python, Java, TypeScript, Lit, Azure and SQL. Building AI agent infrastructure.',
     tags: ['Python', 'Azure', 'MCP', 'AI Agents', 'OpenTelemetry', 'Redis'],
     highlights: [
       'Built an Azure-based Python FastMCP gateway exposing agent tools via JSON-RPC 2.0 and REST, with JWT audience verification, Redis and in-memory caching.',
@@ -84,7 +89,8 @@ export const experience = [
     company: 'PTC Inc.',
     title: 'Associate Software Engineer',
     period: 'Aug 2023 - Jan 2026',
-    summary: 'Worked on a manufacturing production management tool and built the Requirement Assistant AI tool end to end, from web components to Backend services using OpenAI LLMs.',
+    summary:
+      'Worked on a manufacturing production management tool and built the Requirement Assistant AI tool end to end, from web components to Backend services using OpenAI LLMs.',
     tags: ['Java', 'Lit', 'TypeScript', 'FastAPI', 'LLM', 'LangChain', 'SaaS'],
     highlights: [
       'Designed and developed localized, WAI-ARIA-compliant TypeScript and Lit web components for the RA AI tool in a software project management application, increasing accessibility by 50%.',
@@ -104,7 +110,8 @@ export const experience = [
     company: 'GlobalLogic',
     title: 'Senior Software Engineer',
     period: 'Oct 2020 - Aug 2021',
-    summary: 'Led event-driven messaging with Kafka, shaped Agile stories with clients and architects, and mentored a team of six.',
+    summary:
+      'Led event-driven messaging with Kafka, shaped Agile stories with clients and architects, and mentored a team of six.',
     tags: ['Java', 'Spring WebFlux', 'Kafka', 'Spring Cloud', 'Agile'],
     highlights: [
       'Worked closely with clients and architects to formulate Agile stories, reducing rework by 40%.',
@@ -117,7 +124,8 @@ export const experience = [
     company: 'GlobalLogic',
     title: 'Software Engineer',
     period: 'Jul 2018 - Sep 2020',
-    summary: 'Backend engineer for a learning platform, building reactive REST APIs with Java, Spring Boot and NoSQL.',
+    summary:
+      'Backend engineer for a learning platform, building reactive REST APIs with Java, Spring Boot and NoSQL.',
     tags: ['Java', 'Spring Boot', 'Spring WebFlux', 'Couchbase', 'Microservices', 'REST'],
     highlights: [
       'Developed REST APIs for a learning platform using Java, Spring Boot, Spring WebFlux (Reactive Streams), Kafka, and the Couchbase NoSQL database; added unit tests with JUnit, Mockito, and StepVerifier, improving code quality by 35% and test coverage by 40%.',
@@ -130,15 +138,113 @@ export const experience = [
 ];
 
 export const skills = [
-  { group: 'Languages', items: ['Java', 'Python', 'JavaScript', 'TypeScript', 'SQL', 'HTML5', 'CSS'], art: 'sage' },
-  { group: 'Frameworks & Libraries', items: ['Spring Boot', 'Spring WebFlux', 'Spring Cloud', 'FastAPI', 'Hibernate', 'React', 'Lit', 'JUnit', 'Mockito', 'TestNG', 'Playwright', 'ShellSpec'], art: 'sand' },
-  { group: 'AI', items: ['MCP', 'FastMCP', 'AI Agents', 'LangChain', 'LLMs', 'Prompt Engineering', 'Claude', 'GitHub Copilot'], art: 'lilac' },
-  { group: 'Cloud', items: ['Azure AKS', 'Azure Storage', 'AWS S3', 'AWS EC2', 'AWS RDS', 'AWS Lambda', 'CloudWatch'], art: 'clay' },
-  { group: 'DevOps & Build', items: ['Docker', 'Kubernetes', 'Helm', 'Terraform', 'GitHub Actions', 'GitLab', 'Jenkins', 'Git', 'Maven', 'Gradle', 'Apache Tomcat', 'Linux'], art: 'sage' },
-  { group: 'Security', items: ['OAuth2', 'JWT', 'Spring Security', 'HashiCorp Vault', 'Wiz', 'BlackDuck', 'Checkmarx', 'Invicti', 'SonarQube'], art: 'sand' },
-  { group: 'Databases & Messaging', items: ['PostgreSQL', 'MySQL', 'Couchbase', 'Redis', 'DynamoDB', 'Snowflake', 'Kafka', 'Zookeeper'], art: 'lilac' },
-  { group: 'Observability', items: ['OpenTelemetry', 'Prometheus', 'Datadog', 'Aspire'], art: 'clay' },
-  { group: 'Architecture & Practices', items: ['Microservices', 'RESTful APIs', 'Swagger', 'Agile'], art: 'sage' },
+  {
+    group: 'Languages',
+    items: ['Java', 'Python', 'JavaScript', 'TypeScript', 'SQL', 'HTML5', 'CSS'],
+    art: 'sage',
+  },
+  {
+    group: 'Frameworks & Libraries',
+    items: [
+      'Spring Boot',
+      'Spring WebFlux',
+      'Spring Cloud',
+      'FastAPI',
+      'Hibernate',
+      'React',
+      'Lit',
+      'JUnit',
+      'Mockito',
+      'TestNG',
+      'Playwright',
+      'ShellSpec',
+    ],
+    art: 'sand',
+  },
+  {
+    group: 'AI',
+    items: [
+      'MCP',
+      'FastMCP',
+      'AI Agents',
+      'LangChain',
+      'LLMs',
+      'Prompt Engineering',
+      'Claude',
+      'GitHub Copilot',
+    ],
+    art: 'lilac',
+  },
+  {
+    group: 'Cloud',
+    items: [
+      'Azure AKS',
+      'Azure Storage',
+      'AWS S3',
+      'AWS EC2',
+      'AWS RDS',
+      'AWS Lambda',
+      'CloudWatch',
+    ],
+    art: 'clay',
+  },
+  {
+    group: 'DevOps & Build',
+    items: [
+      'Docker',
+      'Kubernetes',
+      'Helm',
+      'Terraform',
+      'GitHub Actions',
+      'GitLab',
+      'Jenkins',
+      'Git',
+      'Maven',
+      'Gradle',
+      'Apache Tomcat',
+      'Linux',
+    ],
+    art: 'sage',
+  },
+  {
+    group: 'Security',
+    items: [
+      'OAuth2',
+      'JWT',
+      'Spring Security',
+      'HashiCorp Vault',
+      'Wiz',
+      'BlackDuck',
+      'Checkmarx',
+      'Invicti',
+      'SonarQube',
+    ],
+    art: 'sand',
+  },
+  {
+    group: 'Databases & Messaging',
+    items: [
+      'PostgreSQL',
+      'MySQL',
+      'Couchbase',
+      'Redis',
+      'DynamoDB',
+      'Snowflake',
+      'Kafka',
+      'Zookeeper',
+    ],
+    art: 'lilac',
+  },
+  {
+    group: 'Observability',
+    items: ['OpenTelemetry', 'Prometheus', 'Datadog', 'Aspire'],
+    art: 'clay',
+  },
+  {
+    group: 'Architecture & Practices',
+    items: ['Microservices', 'RESTful APIs', 'Swagger', 'Agile'],
+    art: 'sage',
+  },
 ];
 
 export const education = [

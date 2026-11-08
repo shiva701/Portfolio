@@ -16,7 +16,11 @@ export default function Skills() {
               <span className="skill-card__label">{s.group}</span>
             </div>
             <div className="skill-card__chips">
-              {s.items.map((i) => <span key={i} className="chip">{i}</span>)}
+              {s.items.map((i) => (
+                <span key={i} className="chip">
+                  {i}
+                </span>
+              ))}
             </div>
           </article>
         ))}

@@ -25,7 +25,8 @@ export default function Hero() {
 
         <h1 className="hero__title">Hello</h1>
         <p className="hero__sub">
-          — It's {profile.firstName}, a software engineer building secure, scalable systems & AI platforms
+          — It's {profile.firstName}, a software engineer building secure, scalable systems & AI
+          platforms
         </p>
 
         <a href="#about" className="hero__scroll">
