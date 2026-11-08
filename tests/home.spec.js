@@ -96,7 +96,8 @@ test.describe('About', () => {
     await page.goto('/');
     const about = page.locator('#about');
     await expect(about).toContainText('6+ years of experience');
-    await expect(about).toContainText('80%');
+    await expect(about).toContainText('22%');
+    await expect(about).toContainText('INCOSE');
     const thumb = about.getByRole('link', { name: 'LinkedIn profile' });
     await expect(thumb).toHaveAttribute('href', 'https://linkedin.com/in/shivashuklagmu');
     await expect(thumb).toHaveAttribute('target', '_blank');
@@ -109,7 +110,7 @@ test.describe('Featured work', () => {
     const titles = page.locator('#work h3');
     await expect(titles).toHaveCount(4);
     await expect(titles).toContainText([
-      'FastMCP Agent Gateway',
+      'Agent Gateway',
       'Requirement Assistant AI Tool',
       'Production Observability',
       'Reactive Learning Platform APIs',
@@ -132,10 +133,39 @@ test.describe('Experience accordion', () => {
   test('lists all roles from the resume', async ({ page }) => {
     await page.goto('/');
     const rows = page.locator('.exp__row');
-    await expect(rows).toHaveCount(3);
+    await expect(rows).toHaveCount(4);
     await expect(rows.nth(0)).toContainText('Software Engineer Specialist');
     await expect(rows.nth(1)).toContainText('Associate Software Engineer');
-    await expect(rows.nth(2)).toContainText('GlobalLogic');
+    await expect(rows.nth(2)).toContainText('Senior Software Engineer');
+    await expect(rows.nth(2)).toContainText('Oct 2020 - Aug 2021');
+    await expect(rows.nth(3)).toContainText('Software Engineer');
+    await expect(rows.nth(3)).toContainText('Jul 2018 - Sep 2020');
+  });
+
+  test('groups roles under each company with an overall timeline', async ({ page }) => {
+    await page.goto('/');
+    const companies = page.locator('.exp__company');
+    await expect(companies).toHaveCount(2);
+
+    const ptc = companies.nth(0);
+    await expect(ptc.locator('.exp__company-head')).toContainText('PTC Inc.');
+    await expect(ptc.locator('.exp__company-head')).toContainText('Aug 2023 - Oct 2026');
+    await expect(ptc.locator('.exp__row')).toHaveCount(2);
+
+    const gl = companies.nth(1);
+    const head = gl.locator('.exp__company-head');
+    await expect(head).toContainText('GlobalLogic');
+    await expect(head).toContainText('Jul 2018 - Aug 2021');
+    await expect(head).toContainText('3 yrs 2 mos');
+    await expect(head).not.toContainText('roles');
+    await expect(page.locator('#experience .round-btn')).toHaveCount(0);
+    const roles = gl.locator('.exp__row');
+    await expect(roles).toHaveCount(2);
+    await expect(roles.nth(0)).toContainText('Senior Software Engineer');
+    await expect(roles.nth(0)).toContainText('11 mos');
+    await expect(roles.nth(0).locator('.exp__promoted')).toBeVisible();
+    await expect(roles.nth(1)).toContainText('2 yrs 3 mos');
+    await expect(roles.nth(1).locator('.exp__promoted')).toHaveCount(0);
   });
 
   test('first role is expanded by default', async ({ page }) => {
@@ -152,7 +182,7 @@ test.describe('Experience accordion', () => {
 
     await expect(toggles.nth(2)).toHaveAttribute('aria-expanded', 'true');
     await expect(toggles.nth(0)).toHaveAttribute('aria-expanded', 'false');
-    await expect(page.getByText('Kafka with Spring Cloud Streams')).toBeVisible();
+    await expect(page.getByText('Kafka with the Spring Cloud Streams API')).toBeVisible();
     await expect(page.getByText('FastMCP gateway exposing agent tools')).toBeHidden();
   });
 
@@ -166,10 +196,10 @@ test.describe('Experience accordion', () => {
 });
 
 test.describe('Skills & education', () => {
-  test('shows six skill groups', async ({ page }) => {
+  test('shows nine skill groups', async ({ page }) => {
     await page.goto('/');
     const labels = page.locator('.skill-card__label');
-    await expect(labels).toHaveCount(6);
+    await expect(labels).toHaveCount(9);
     await expect(page.locator('#skills')).toContainText('Spring Boot');
     await expect(page.locator('#skills')).toContainText('LangChain');
   });
@@ -180,5 +210,31 @@ test.describe('Skills & education', () => {
     await expect(edu).toContainText('George Mason University');
     await expect(edu).toContainText('Master of Science, Computer Science');
     await expect(edu).toContainText('Harcourt Butler Technological Institute');
+    await expect(edu).toContainText('Graduate Teaching Assistant');
+    await expect(edu).toContainText('Data Structures and Algorithms · Jan 2022 - May 2023');
   });
+
+  test('opens the GMU award certificate in a viewer', async ({ page }) => {
+    await page.goto('/');
+    const edu = page.locator('#education');
+    await edu.getByRole('button', { name: /Distinguished Academic Achievement/ }).click();
+    const dialog = page.getByRole('dialog', { name: 'Distinguished Academic Achievement' });
+    await expect(dialog).toBeVisible();
+    await expect(dialog.getByRole('img', { name: /certificate/ })).toBeVisible();
+    await expect(dialog.locator('img, a[download]')).toHaveCount(0);
+    await dialog.getByRole('button', { name: 'Close' }).click();
+    await expect(dialog).toBeHidden();
+  });
+
+  for (const name of ['General Quiz, 3rd Place', 'Table Tennis Boys Doubles, 1st Prize']) {
+    test(`opens the HBTI "${name}" certificate in a viewer`, async ({ page }) => {
+      await page.goto('/');
+      await page.locator('#education').getByRole('button', { name: new RegExp(name) }).click();
+      const dialog = page.getByRole('dialog', { name });
+      await expect(dialog.getByRole('img', { name: /certificate/ })).toBeVisible();
+      await expect(dialog.locator('img, a[download]')).toHaveCount(0);
+      await page.keyboard.press('Escape');
+      await expect(dialog).toBeHidden();
+    });
+  }
 });

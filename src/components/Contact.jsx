@@ -15,7 +15,7 @@ export default function Contact() {
       <h2 className="contact__title">Got a Project? Let's Build It Together!</h2>
       <p className="tiny muted contact__text">
         I'm always open to new roles, collaborations and interesting engineering challenges.
-        Whether it's a backend platform, cloud infrastructure or an AI agent, let's talk.
+        Whether it's a backend platform, front-end components, cloud infrastructure or an AI agent, I am open to discussing opportunities.
       </p>
 
       <ul className="contact__grid">

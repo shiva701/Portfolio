@@ -11,11 +11,15 @@ npm run dev        # http://localhost:5173
 npm run build      # production build in dist/
 ```
 
-## Editing content
-All text (about, experience, skills, education, contact) lives in `src/data.js`.
-Images and the downloadable resume are in `public/`:
-- `public/hero.jpg`, `public/headshot.jpg` — cropped from IMG_5833-EDIT.jpg
-- `public/Shiva_Shukla_Resume.pdf` — linked by every "Download Resume" button
+## Linting & formatting
+ESLint (with React, React Hooks and React Refresh rules) checks code quality. Prettier handles formatting. `eslint-config-prettier` stops the two from conflicting. Config files: `eslint.config.js` and `.prettierrc.json`.
+
+```bash
+npm run lint           # report lint problems
+npm run lint:fix       # auto-fix what ESLint can
+npm run format         # format all files with Prettier
+npm run format:check   # check formatting without writing (useful in CI)
+```
 
 ## Tests
 End-to-end tests use Playwright (desktop Chrome + Pixel 7 mobile). The dev server starts automatically.
