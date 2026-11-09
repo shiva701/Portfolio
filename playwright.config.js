@@ -23,6 +23,16 @@ export default defineConfig({
       testMatch: /mobile\.spec\.js/,
       use: { ...devices['Pixel 7'] },
     },
+    {
+      name: 'samsung',
+      testMatch: /mobile\.spec\.js/,
+      use: { ...devices['Galaxy S24'] },
+    },
+    {
+      name: 'iphone',
+      testMatch: /mobile\.spec\.js/,
+      use: { ...devices['iPhone 15'] },
+    },
   ],
   webServer: {
     command: `npm run dev -- --port ${PORT} --strictPort`,
