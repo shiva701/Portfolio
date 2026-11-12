@@ -19,6 +19,7 @@ export const navLinks = [
   { label: 'About Me', href: '#about' },
   { label: 'Work', href: '#work' },
   { label: 'Experience', href: '#experience' },
+  { label: 'Projects', href: '#projects' },
   { label: 'Skills', href: '#skills' },
   { label: 'Contact', href: '#contact' },
 ];
@@ -66,6 +67,25 @@ export const featuredWork = [
     tag: 'WebFlux · Kafka',
     desc: 'Reactive REST APIs on Couchbase with Kafka retries. Microservices 30% more reliable.',
     art: 'clay',
+  },
+];
+
+export const projects = [
+  {
+    title: 'Pomodoro Focus Timer',
+    desc: 'A minimal focus timer with configurable focus and break lengths, a draining progress arc, automatic breaks, chimes and alarms, and the countdown mirrored in the browser tab title.',
+    tags: ['React', 'Vite', 'JavaScript', 'Playwright', 'GitHub Pages'],
+    live: 'https://shiva701.github.io/Pomodoro/',
+    source: 'https://github.com/shiva701/Pomodoro',
+    art: 'clay',
+  },
+  {
+    title: 'TextUtils',
+    desc: 'A text playground that converts case, removes extra spaces and clears input, with live word and character counts, an estimated reading time and a dark mode.',
+    tags: ['React', 'JavaScript', 'Bootstrap', 'GitHub Pages'],
+    live: 'https://shiva701.github.io/textutils/',
+    source: 'https://github.com/shiva701/textutils',
+    art: 'sage',
   },
 ];
 

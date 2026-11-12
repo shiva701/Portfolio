@@ -3,6 +3,7 @@ import Hero from './components/Hero.jsx';
 import About from './components/About.jsx';
 import Work from './components/Work.jsx';
 import Experience from './components/Experience.jsx';
+import Projects from './components/Projects.jsx';
 import Banner from './components/Banner.jsx';
 import Skills from './components/Skills.jsx';
 import Education from './components/Education.jsx';
@@ -20,6 +21,7 @@ export default function App() {
         <About />
         <Work />
         <Experience />
+        <Projects />
         <Banner />
         <Skills />
         <Education />

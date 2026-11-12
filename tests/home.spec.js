@@ -14,7 +14,16 @@ test.describe('Page basics', () => {
 
   test('renders every main section', async ({ page }) => {
     await page.goto('/');
-    for (const id of ['top', 'about', 'work', 'experience', 'skills', 'education', 'contact']) {
+    for (const id of [
+      'top',
+      'about',
+      'work',
+      'experience',
+      'projects',
+      'skills',
+      'education',
+      'contact',
+    ]) {
       await expect(page.locator(`#${id}`)).toBeAttached();
     }
     await expect(page.locator('footer')).toBeVisible();
@@ -60,6 +69,7 @@ test.describe('Navigation', () => {
     ['About Me', 'about'],
     ['Work', 'work'],
     ['Experience', 'experience'],
+    ['Projects', 'projects'],
     ['Skills', 'skills'],
     ['Contact', 'contact'],
   ];
@@ -125,6 +135,34 @@ test.describe('Featured work', () => {
     const before = await desc.boundingBox();
     await card.hover();
     await expect.poll(async () => (await desc.boundingBox()).y).toBeLessThan(before.y);
+  });
+});
+
+test.describe('Projects', () => {
+  test('lists both projects with live and source links', async ({ page }) => {
+    await page.goto('/');
+    const section = page.locator('#projects');
+    await expect(section.locator('h3')).toHaveText(['Pomodoro Focus Timer', 'TextUtils']);
+    for (const [name, live, source] of [
+      [
+        'Pomodoro Focus Timer',
+        'https://shiva701.github.io/Pomodoro/',
+        'https://github.com/shiva701/Pomodoro',
+      ],
+      [
+        'TextUtils',
+        'https://shiva701.github.io/textutils/',
+        'https://github.com/shiva701/textutils',
+      ],
+    ]) {
+      const demo = section.getByRole('link', { name: `Live demo of ${name}` });
+      await expect(demo).toHaveAttribute('href', live);
+      await expect(demo).toHaveAttribute('target', '_blank');
+      await expect(section.getByRole('link', { name: `Source code of ${name}` })).toHaveAttribute(
+        'href',
+        source,
+      );
+    }
   });
 });
 
@@ -197,7 +235,7 @@ test.describe('Experience accordion', () => {
 test.describe('Skills & education', () => {
   test('shows nine skill groups', async ({ page }) => {
     await page.goto('/');
-    const labels = page.locator('.skill-card__label');
+    const labels = page.locator('#skills .skill-card__label');
     await expect(labels).toHaveCount(9);
     await expect(page.locator('#skills')).toContainText('Spring Boot');
     await expect(page.locator('#skills')).toContainText('LangChain');
