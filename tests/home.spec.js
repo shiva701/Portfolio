@@ -209,7 +209,9 @@ test.describe('Experience accordion', () => {
     await page.goto('/');
     const first = page.locator('.exp__summary').first();
     await expect(first).toHaveAttribute('aria-expanded', 'true');
-    await expect(page.getByText('FastMCP gateway exposing agent tools')).toBeVisible();
+    await expect(
+      page.getByText('FastMCP gateway that exposes registered agent tools'),
+    ).toBeVisible();
   });
 
   test('clicking a role expands it and collapses the others', async ({ page }) => {
@@ -220,7 +222,9 @@ test.describe('Experience accordion', () => {
     await expect(toggles.nth(2)).toHaveAttribute('aria-expanded', 'true');
     await expect(toggles.nth(0)).toHaveAttribute('aria-expanded', 'false');
     await expect(page.getByText('Kafka with the Spring Cloud Streams API')).toBeVisible();
-    await expect(page.getByText('FastMCP gateway exposing agent tools')).toBeHidden();
+    await expect(
+      page.getByText('FastMCP gateway that exposes registered agent tools'),
+    ).toBeHidden();
   });
 
   test('clicking the open role collapses it', async ({ page }) => {
@@ -228,7 +232,9 @@ test.describe('Experience accordion', () => {
     const first = page.locator('.exp__summary').first();
     await first.click();
     await expect(first).toHaveAttribute('aria-expanded', 'false');
-    await expect(page.getByText('FastMCP gateway exposing agent tools')).toBeHidden();
+    await expect(
+      page.getByText('FastMCP gateway that exposes registered agent tools'),
+    ).toBeHidden();
   });
 });
 
